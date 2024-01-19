@@ -75,13 +75,14 @@ The ETL process consists of several key stages, each critical to the data pipeli
    - Utilizing PowerBI for creating reports to filter incidents by date and Battalion
 
 ```
-SF.gov/API ----> ETL ----------------------------------> Reporting
-                                      |----> Data extraction                  
-                                      |                                                                  
-                                      |----> Data transforms
-                                      |           |
-                                      |           |------> Data standardization
-                                      |           |------> Data modeling
-                                      |
-                                      |------------------> Data uploading into wharehouse system
+SF.gov/API ----> ETL ----------------------------------> Reporting 
+                    |                                    (report made with powerBi)
+                    |----> Data extraction                  
+                    |                                                                  
+                    |----> Data transforms
+                    |           |
+                    |           |------> Data standardization
+                    |           |------> Data modeling
+                    |
+                    |------------------> Data uploading into wharehouse system
 ```
