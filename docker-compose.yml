@@ -1,0 +1,77 @@
+
+
+version: '3.8'
+
+services:
+  initializer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    command:  python ./setup.py
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=yourpassword
+      - DATABASE_NAME=yourdb
+
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: ./jupyter/Dockerfile
+    volumes:
+      - .:/home/jovyan/work
+    ports: 
+      - 8888:8888
+    environment:
+      - JUPYTER_TOKEN=easy
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    working_dir: /app
+    command:  python ./main.py
+    depends_on:
+      - initializer
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=yourpassword
+      - DATABASE_NAME=yourdb
+      
+      
+volumes:
+  postgres_data:
