@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-### Title: San Francisco Fire Department Data Standardization and Extraction
+### San Francisco Fire Department Data Standardization 
 
 ### Description
 This project aims to extract, standardize, and analyze data from the San Francisco Fire Department, focusing on non-medical incidents. It involves a detailed ETL process to ensure data quality and usability for reporting purposes, particularly in PowerBI.
