@@ -1,50 +1,78 @@
-# Project description 
-Project for extracting and standarizing data from the san francisco fire department. includes a summary of each (non-medical) incident to which the SF Fire Department responded. Each incident record includes the call number, incident number, address, number and type of each unit responding, call type (as determined by dispatch), prime situation (field observation), actions taken, and property loss.
+# Data pipeline creation
+
+## Project Overview
+
+### Project Title: San Francisco Fire Department Data Standardization and Extraction
+
+### Description
+This project focuses on extracting and standardizing data from the San Francisco Fire Department. It aims to provide a comprehensive overview of each non-medical incident responded to by the SF Fire Department. The dataset includes detailed records such as call numbers, incident numbers, addresses, responding unit types and numbers, dispatch-determined call types, field observations, actions taken, and property loss assessments.
+
+### Objective
+Our primary objective is to develop a robust and efficient data pipeline that allows for the extraction, transformation, and loading (ETL) of this valuable data into a data warehouse, enabling deeper insights and analysis.
+
 ### Data Source
-[sfgov.org](https://data.sfgov.org/Public-Safety/Fire-Incidents/wr8u-xric/about_data)
+For detailed incident data, we utilize the publicly available dataset from the San Francisco government's website: [Fire Incidents Data](https://data.sfgov.org/Public-Safety/Fire-Incidents/wr8u-xric/about_data)
 
-# Depends
-This project relies on python, postgreSQL and Docker (optional)
+## Project Dependencies
+This project is built using several key technologies:
+- **Python**: For scripting and running the ETL processes.
+- **PostgreSQL**: As the database management system.
+- **Docker**: Optional, for containerization and easy deployment.
 
-# Setting up
-## using docker
-run
-'''
-    $ docker-compose up
-'''
+## Setting Up the Project
 
-## using pip
-### this requires to use .env or any other environment variables library such as direnv 
+### Using Docker (Recommended)
+To initiate the project with Docker, simply run the following command:
+```
+$ docker-compose up
+```
 
-install dependencies with pip
-'''
-pip install -r non-docker-requirements.txt
-'''
+### Using Python and Pip (Non-Docker Setup)
+For a non-Docker setup, follow these steps:
 
-create .env file following .env.example with the variables of the database
+1. **Install Dependencies**:
+   Install necessary Python packages using pip:
+   ```
+   pip install -r non-docker-requirements.txt
+   ```
 
-Create db schema 
-'''
-    python setup.py
-'''
-run ETL process 
-'''
-    python main.py
-'''
+2. **Database Configuration**:
+   - Create a `.env` file based on the provided `.env.example`.
+   - Fill in the database variables as per your setup.
 
-# Inspecting the data
-## Using docker
-you have containers of jupyter notebooks, postgrSQL, and pgadmin. This allowing you to inspect all the project's ETL efectiveness and data integrity
-- to use jupyter type http://localhost:8888/?token=easy in the searchbar and use the data_exploring .ipynb
-- to use pgadmin type http://localhost:5050 in the searchbar and login as user: admin@admin password: admin
+3. **Database Schema Creation**:
+   Set up the database schema using:
+   ```
+   python setup.py
+   ```
 
-## without docker
-it's higly recomended to use docker to avoid any further inconvenience produced by the instalation process of any of the recomended tools to inspect the data flow
+4. **Running the ETL Process**:
+   Execute the ETL process by running:
+   ```
+   python main.py
+   ```
 
+## Data Inspection and Analysis
 
-# Process of planning and thinking
-## Data understanding
-The propouse of the project is to create a functional Pipeline with data extraction, data transforms, and loading the processed data into a wharehouse.
+### With Docker
+The project includes Docker containers configured for Jupyter Notebooks, PostgreSQL, and PgAdmin. These tools facilitate the inspection and analysis of the ETL process and data integrity.
+
+- **Jupyter Notebooks**: Access by navigating to `http://localhost:8888/?token=easy`. Use the `data_exploring.ipynb` notebook for data analysis.
+- **PgAdmin**: Access PgAdmin at `http://localhost:5050`. Login with the credentials `user: admin@admin` and `password: admin`.
+
+### Without Docker
+It is strongly recommended to use Docker to avoid complications arising from the installation of the recommended tools for data analysis. However, alternative methods can be explored based on individual setup and preferences.
+
+## Project Methodology
+
+### Understanding the Data
+The project is centered around creating a functional and efficient data pipeline. The stages include:
+
+1. **Data Extraction**: Acquiring data from the specified source.
+2. **Data Transformation**: Standardizing and processing the data for analytical readiness.
+3. **Data Loading**: Storing the processed data in a data warehouse for further analysis.
+
+---
 
 SF.gov/API ----> ETL ----------------------------------> Reporting
                     |----> Data extraction                  (report made with powerBI to filter incidents by date and by Battalion)
