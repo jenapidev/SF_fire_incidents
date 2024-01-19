@@ -1,6 +1,6 @@
 from os import name
 
-from ParseData import ParseData
+from src.ParseData import ParseData
 
 from dotenv import load_dotenv
 

@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 import io
-from utils import custom_print
+from .utils import custom_print
 from db.utils import engine, session
 from db.Incident import Casualty, Incident, Location, Time
 from sqlalchemy.sql import text as sa_text
