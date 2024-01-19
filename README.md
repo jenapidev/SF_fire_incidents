@@ -1,7 +1,3 @@
-Certainly! I'll integrate this data flow diagram into the enhanced README.md to provide a clearer visual representation of the project's ETL process. This addition will help users understand the sequential steps and components involved in the data pipeline.
-
----
-
 # Enhanced README.md with Data Flow Diagram
 
 ## Project Overview
