@@ -1,53 +1,49 @@
-# Data pipeline creation
+Certainly! I'll integrate this data flow diagram into the enhanced README.md to provide a clearer visual representation of the project's ETL process. This addition will help users understand the sequential steps and components involved in the data pipeline.
+
+---
+
+# Enhanced README.md with Data Flow Diagram
 
 ## Project Overview
 
-### Project Title: San Francisco Fire Department Data Standardization and Extraction
+### Title: San Francisco Fire Department Data Standardization and Extraction
 
 ### Description
-This project focuses on extracting and standardizing data from the San Francisco Fire Department. It aims to provide a comprehensive overview of each non-medical incident responded to by the SF Fire Department. The dataset includes detailed records such as call numbers, incident numbers, addresses, responding unit types and numbers, dispatch-determined call types, field observations, actions taken, and property loss assessments.
+This project aims to extract, standardize, and analyze data from the San Francisco Fire Department, focusing on non-medical incidents. It involves a detailed ETL process to ensure data quality and usability for reporting purposes, particularly in PowerBI.
 
 ### Objective
-Our primary objective is to develop a robust and efficient data pipeline that allows for the extraction, transformation, and loading (ETL) of this valuable data into a data warehouse, enabling deeper insights and analysis.
+To develop a comprehensive data pipeline for extracting, transforming, and loading (ETL) incident data, enabling advanced analysis and insights through a structured data warehouse.
 
 ### Data Source
-For detailed incident data, we utilize the publicly available dataset from the San Francisco government's website: [Fire Incidents Data](https://data.sfgov.org/Public-Safety/Fire-Incidents/wr8u-xric/about_data)
+Incident data is sourced from the San Francisco government's public dataset: [Fire Incidents Data](https://data.sfgov.org/Public-Safety/Fire-Incidents/wr8u-xric/about_data)
 
 ## Project Dependencies
-This project is built using several key technologies:
-- **Python**: For scripting and running the ETL processes.
-- **PostgreSQL**: As the database management system.
-- **Docker**: Optional, for containerization and easy deployment.
+- **Python**
+- **PostgreSQL**
+- **Docker** (optional)
 
 ## Setting Up the Project
 
-### Using Docker (Recommended)
-To initiate the project with Docker, simply run the following command:
+### Using Docker
+Run:
 ```
 $ docker-compose up
 ```
 
-### Using Python and Pip (Non-Docker Setup)
-For a non-Docker setup, follow these steps:
-
-1. **Install Dependencies**:
-   Install necessary Python packages using pip:
+### Using Python and Pip (Non-Docker)
+1. Install dependencies:
    ```
    pip install -r non-docker-requirements.txt
    ```
 
-2. **Database Configuration**:
-   - Create a `.env` file based on the provided `.env.example`.
-   - Fill in the database variables as per your setup.
+2. Configure database using `.env` file as per `.env.example`.
 
-3. **Database Schema Creation**:
-   Set up the database schema using:
+3. Create database schema:
    ```
    python setup.py
    ```
 
-4. **Running the ETL Process**:
-   Execute the ETL process by running:
+4. Run ETL process:
    ```
    python main.py
    ```
@@ -55,31 +51,37 @@ For a non-Docker setup, follow these steps:
 ## Data Inspection and Analysis
 
 ### With Docker
-The project includes Docker containers configured for Jupyter Notebooks, PostgreSQL, and PgAdmin. These tools facilitate the inspection and analysis of the ETL process and data integrity.
-
-- **Jupyter Notebooks**: Access by navigating to `http://localhost:8888/?token=easy`. Use the `data_exploring.ipynb` notebook for data analysis.
-- **PgAdmin**: Access PgAdmin at `http://localhost:5050`. Login with the credentials `user: admin@admin` and `password: admin`.
+- **Jupyter Notebooks**: `http://localhost:8888/?token=easy` 
+- **PgAdmin**: `http://localhost:5050` (Credentials: `admin@admin` / `admin`)
 
 ### Without Docker
-It is strongly recommended to use Docker to avoid complications arising from the installation of the recommended tools for data analysis. However, alternative methods can be explored based on individual setup and preferences.
+Using Docker is recommended to avoid setup complexities.
 
-## Project Methodology
+## Data Flow Diagram
 
-### Understanding the Data
-The project is centered around creating a functional and efficient data pipeline. The stages include:
+The ETL process consists of several key stages, each critical to the data pipeline's success:
 
-1. **Data Extraction**: Acquiring data from the specified source.
-2. **Data Transformation**: Standardizing and processing the data for analytical readiness.
-3. **Data Loading**: Storing the processed data in a data warehouse for further analysis.
+1. **Data Extraction**: 
+   - Source: `SF.gov/API`
 
----
+2. **Data Transformation**: 
+   - Data Standardization
+   - Data Modeling (structuring data into dimensions and facts for warehousing)
 
+3. **Data Loading**:
+   - Uploading processed data into the warehouse system
+
+4. **Reporting**:
+   - Utilizing PowerBI for creating reports to filter incidents by date and Battalion
+
+```
 SF.gov/API ----> ETL ----------------------------------> Reporting
-                    |----> Data extraction                  (report made with powerBI to filter incidents by date and by Battalion)
-                    |----> Data transforms
-                    |           |
-                    |           |------> Data standarization
-                    |           |------> Data modeling
-                    |                       (model data into dimensions and facts structure for Wharehousing)
-                    |
-                    |------------------> Data uploading into wharehouse system
+                                      |----> Data extraction                  
+                                      |                                                                  
+                                      |----> Data transforms
+                                      |           |
+                                      |           |------> Data standardization
+                                      |           |------> Data modeling
+                                      |
+                                      |------------------> Data uploading into wharehouse system
+```
