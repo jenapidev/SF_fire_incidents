@@ -1,8 +1,8 @@
-# Data pipeline creation
+# Data pipeline for Fire Incidents analysis
 
 ## Project Overview
 
-### Project Title: San Francisco Fire Department Data Standardization and Extraction
+### San Francisco Fire Department Data Standardization 
 
 ### Description
 This project focuses on extracting and standardizing data from the San Francisco Fire Department. It aims to provide a comprehensive overview of each non-medical incident responded to by the SF Fire Department. The dataset includes detailed records such as call numbers, incident numbers, addresses, responding unit types and numbers, dispatch-determined call types, field observations, actions taken, and property loss assessments.
@@ -83,3 +83,4 @@ SF.gov/API ----> ETL ----------------------------------> Reporting
                     |                       (model data into dimensions and facts structure for Wharehousing)
                     |
                     |------------------> Data uploading into wharehouse system
+```
